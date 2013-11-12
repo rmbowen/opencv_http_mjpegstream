@@ -16,7 +16,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {		
-	VideoCapture capture("http://129.21.124.217:8082");		
+	VideoCapture capture("http://localhost:8082");		
 
 	Mat raw;
 	
