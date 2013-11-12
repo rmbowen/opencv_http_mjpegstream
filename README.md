@@ -19,26 +19,37 @@ Basic Overview:
 
 Allows for multiple client connection to the mjpeg stream.
 
-MJPEG stream is sent using sockets connects using SOCK_STREAM. PORT is 8082
+MJPEG stream is sent using sockets connects using SOCK_STREAM. default PORT is 8082
+
+COMPILING (ASSUME OpenCV Configured correctly):
+
+Just run make
 
 USE:
 
-1.) Install OpenCV
-2.) make
-3.) ./testWebCam
+./testWebCamServer
 
---> You can access the stream from http://computerip:8082
-    (Recommend initially viewing stream from VLC then working with it elsewise)
+This will open the camera default = 0, and provide stream on 8082
 
---> You can also embed into an image on a webpage (you will obviously need a webserver then...)
+./testWebCamClient
+
+Once server is running this will connect and display the stream, default server is localhost and port 8082.
+
+OTHER USES:
+
+You can access the stream from http://computerip:8082, 
+Currently some issues with direct access from browser or program such as VLC
+
+You can also embed into an image on a webpage (you will obviously need a webserver then...)
+SEE index.html as an example
 
 MODIFY STREAM PROPERTIES:
 
---> check out the #defines in testWebCam.cpp 
+--> check out the #defines in testWebCamServer.cpp 
 --> Can change, port, image compression, image width/height, and if local display is executed.
 
 
 Some known issues:
 
 --> Need to ctr+c to exit and sometimes you have unplugg and plug back in your web camera.
-
+--> Very slow when using browser directly and/or VLC. Fix coming soon.
