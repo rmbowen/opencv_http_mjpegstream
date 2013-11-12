@@ -1,17 +1,20 @@
 CC=g++
 CFLAGS=-c -Wall 
 LDFLAGS= -lpthread -lopencv_highgui -lopencv_core -lopencv_imgproc
-SOURCES=testWebCam.cpp 
+SOURCES=testWebCamServer.cpp testWebCamClient.cpp
 OBJECTS=$(SOURCES:%.cpp=%.o)
-EXECUTABLE=testWebCam
+EXECS=testWebCamServer testWebCamClient
 
-all: clean $(SOURCES) $(EXECUTABLE)
+all: clean $(EXECS)
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
+testWebCamServer: testWebCamServer.o 
+	$(CC) $< $(LDFLAGS) -o $@
+
+testWebCamClient: testWebCamClient.o
+	$(CC) $< $(LDFLAGS) -o $@
+	
 .cpp.o:
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	rm -f *.o $(EXECUTABLE)
-
+	rm -f *.o $(EXECS)
